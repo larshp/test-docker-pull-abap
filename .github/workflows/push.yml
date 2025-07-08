@@ -4,5 +4,7 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     steps:
       - run: docker pull sapse/abap-cloud-developer-trial:2023
+      - run: docker run --stop-timeout 3600 -it --name a4h -h vhcala4hci sapse/abap-cloud-developer-trial:2023
