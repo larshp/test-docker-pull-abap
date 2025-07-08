@@ -7,7 +7,14 @@ jobs:
     timeout-minutes: 120
     steps:
       - run: df -h
-      - run: rm -rf /opt/hostedtoolcache    
+      - name: Remove unnecessary directories to free up space
+        run: |
+          sudo rm -rf /usr/local/.ghcup
+          sudo rm -rf /opt/hostedtoolcache
+          sudo rm -rf /usr/local/lib/android/sdk/ndk
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/share/boost
       - run: df -h
       - run: docker pull sapse/abap-cloud-developer-trial:2023
       - run: docker run --stop-timeout 3600 -it --name a4h -h vhcala4hci sapse/abap-cloud-developer-trial:2023
